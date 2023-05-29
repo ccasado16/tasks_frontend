@@ -1,6 +1,21 @@
 <template>
-  <div class="flex h-screen flex-col justify-center items-center">
-    <h1>Tasks</h1>
+  <div class="">
+    <h2 class="text-4xl mb-7">What's up, User!</h2>
+    <p class="uppercase">categories</p>
+    <!-- TODO - Add categories scroller section -->
+    <p class="uppercase mb-5">today's tasks</p>
+    <ul class="space-y-3">
+      <li v-for="task in tasks" :key="task.id" class="border-2">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <p>{{ task.completed }}</p>
+        <button @click="completeTask(task)">Complete</button>
+        <button @click="deleteTask(task)">Delete</button>
+      </li>
+    </ul>
+
+    <hr />
+    <!-- Add a new task form -->
     <form v-on:submit.prevent="addTask">
       <label for="title">Title</label>
       <input
@@ -10,23 +25,12 @@
         placeholder="Title"
         v-model="title"
       />
-  
+
       <label for="description">Description</label>
       <textarea id="description" v-model="description"></textarea>
-  
+
       <button type="submit">Add task</button>
     </form>
-  
-    <hr />
-    <ul>
-      <li v-for="task in tasks" :key="task.id">
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
-        <p>{{ task.completed }}</p>
-        <button @click="completeTask(task)">Complete</button>
-        <button @click="deleteTask(task)">Delete</button>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -91,7 +95,7 @@
         } catch (error) {
           console.log(error);
         }
-      }
+      },
     },
     // fetch tasks on page load
     created() {
