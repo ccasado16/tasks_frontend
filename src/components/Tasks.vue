@@ -76,17 +76,18 @@
       },
 
       // Toggle complete task
+      // FIXME
       // thinking on creating a new backend endpoint for just completed a task instead of updating the whole task by just changing the completed field
       async completeTask(task) {
         try {
-            await useAxios.put(`api/tasks/${task.id}/`, {
-                title: task.title,
-                description: task.description,
-                completed: !task.completed,
-            });
-            this.getTasks();
+          await useAxios.put(`api/tasks/${task.id}/`, {
+            title: task.title,
+            description: task.description,
+            completed: !task.completed,
+          });
+          this.getTasks();
         } catch (error) {
-            console.log(error)   
+          console.log(error);
         }
       }
     },
