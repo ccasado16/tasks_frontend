@@ -21,6 +21,7 @@
     <li v-for="task in tasks" :key="task.id">
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
+      <button @click="deleteTask(task)">Delete</button>
     </li>
   </ul>
 </template>
@@ -58,6 +59,15 @@
           this.tasks.push(response.data);
           this.title = "";
           this.description = "";
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      
+      async deleteTask(task) {
+        try {
+          await useAxios.delete(`api/tasks/${task.id}/`);
+          this.getTasks();
         } catch (error) {
           console.log(error);
         }
