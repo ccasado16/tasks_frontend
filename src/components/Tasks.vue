@@ -1,31 +1,33 @@
 <template>
-  <h1>Tasks</h1>
-  <form v-on:submit.prevent="addTask">
-    <label for="title">Title</label>
-    <input
-      type="text"
-      id="title"
-      name="title"
-      placeholder="Title"
-      v-model="title"
-    />
-
-    <label for="description">Description</label>
-    <textarea id="description" v-model="description"></textarea>
-
-    <button type="submit">Add task</button>
-  </form>
-
-  <hr />
-  <ul>
-    <li v-for="task in tasks" :key="task.id">
-      <h3>{{ task.title }}</h3>
-      <p>{{ task.description }}</p>
-      <p>{{ task.completed }}</p>
-      <button @click="completeTask(task)">Complete</button>
-      <button @click="deleteTask(task)">Delete</button>
-    </li>
-  </ul>
+  <div class="flex h-screen flex-col justify-center items-center">
+    <h1>Tasks</h1>
+    <form v-on:submit.prevent="addTask">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="Title"
+        v-model="title"
+      />
+  
+      <label for="description">Description</label>
+      <textarea id="description" v-model="description"></textarea>
+  
+      <button type="submit">Add task</button>
+    </form>
+  
+    <hr />
+    <ul>
+      <li v-for="task in tasks" :key="task.id">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <p>{{ task.completed }}</p>
+        <button @click="completeTask(task)">Complete</button>
+        <button @click="deleteTask(task)">Delete</button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
