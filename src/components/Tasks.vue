@@ -21,6 +21,8 @@
     <li v-for="task in tasks" :key="task.id">
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
+      <p>{{ task.completed }}</p>
+      <button @click="completeTask(task)">Complete</button>
       <button @click="deleteTask(task)">Delete</button>
     </li>
   </ul>
@@ -63,7 +65,7 @@
           console.log(error);
         }
       },
-      
+
       async deleteTask(task) {
         try {
           await useAxios.delete(`api/tasks/${task.id}/`);
@@ -72,6 +74,21 @@
           console.log(error);
         }
       },
+
+      // Toggle complete task
+      // thinking on creating a new backend endpoint for just completed a task instead of updating the whole task by just changing the completed field
+      async completeTask(task) {
+        try {
+            await useAxios.put(`api/tasks/${task.id}/`, {
+                title: task.title,
+                description: task.description,
+                completed: !task.completed,
+            });
+            this.getTasks();
+        } catch (error) {
+            console.log(error)   
+        }
+      }
     },
     // fetch tasks on page load
     created() {
