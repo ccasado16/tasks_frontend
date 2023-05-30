@@ -28,7 +28,9 @@
         </div>
 
         <!-- right -->
-        <button @click="deleteTask(task)">Delete</button>
+        <el-button @click="deleteTask(task)">
+          <el-icon><Delete /></el-icon>
+        </el-button>
       </li>
     </ul>
 
@@ -54,6 +56,8 @@
 
 <script>
   import useAxios from "../axios";
+  import { Delete } from "@element-plus/icons-vue";
+
   export default {
     data() {
       return {
