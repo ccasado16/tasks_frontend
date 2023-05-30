@@ -1,11 +1,15 @@
 <template>
-  <div class="">
+  <div class="container mx-auto">
     <h2 class="text-4xl mb-7">What's up, User!</h2>
     <p class="uppercase">categories</p>
     <!-- TODO - Add categories scroller section -->
     <p class="uppercase mb-5">today's tasks</p>
     <ul class="space-y-3">
-      <li v-for="task in tasks" :key="task.id" class="border-2">
+      <li
+        v-for="task in tasks"
+        :key="task.id"
+        class="border-2"
+      >
         <h3>{{ task.title }}</h3>
         <p>{{ task.description }}</p>
         <p>{{ task.completed }}</p>
@@ -27,7 +31,10 @@
       />
 
       <label for="description">Description</label>
-      <textarea id="description" v-model="description"></textarea>
+      <textarea
+        id="description"
+        v-model="description"
+      ></textarea>
 
       <button type="submit">Add task</button>
     </form>
