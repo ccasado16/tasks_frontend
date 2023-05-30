@@ -8,12 +8,20 @@
       <li
         v-for="task in tasks"
         :key="task.id"
-        class="border-2"
+        class="flex space-x-5 p-3 border-2 rounded-3xl items-center"
       >
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
-        <p>{{ task.completed }}</p>
-        <button @click="completeTask(task)">Complete</button>
+        <input
+          type="radio"
+          @click="completeTask(task)"
+          class="w-7 h-7"
+        />
+        <div :class="{ 'line-through': task.completed }">
+          <h3 class="text-2xl font-semibold">
+            {{ task.title }}
+          </h3>
+          <p class="text-xl">{{ task.description }}</p>
+          <p>{{ task.completed }}</p>
+        </div>
         <button @click="deleteTask(task)">Delete</button>
       </li>
     </ul>
