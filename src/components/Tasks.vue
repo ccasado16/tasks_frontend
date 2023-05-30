@@ -8,20 +8,26 @@
       <li
         v-for="task in tasks"
         :key="task.id"
-        class="flex space-x-5 p-3 border-2 rounded-3xl items-center"
+        class="flex p-3 border-2 rounded-3xl items-center justify-between"
       >
-        <input
-          type="radio"
-          @click="completeTask(task)"
-          class="w-7 h-7"
-        />
-        <div :class="{ 'line-through': task.completed }">
-          <h3 class="text-2xl font-semibold">
-            {{ task.title }}
-          </h3>
-          <p class="text-xl">{{ task.description }}</p>
-          <p>{{ task.completed }}</p>
+        <!-- left -->
+        <div class="flex items-center">
+          <input
+            type="radio"
+            class="radio-custom w-7 h-7 mr-5"
+            :checked="task.completed"
+            @click="completeTask(task)"
+          />
+          <div :class="{ 'line-through': task.completed }">
+            <h3 class="text-2xl font-semibold">
+              {{ task.title }}
+            </h3>
+            <p class="text-xl">{{ task.description }}</p>
+            <p>{{ task.completed }}</p>
+          </div>
         </div>
+
+        <!-- right -->
         <button @click="deleteTask(task)">Delete</button>
       </li>
     </ul>
@@ -39,10 +45,7 @@
       />
 
       <label for="description">Description</label>
-      <textarea
-        id="description"
-        v-model="description"
-      ></textarea>
+      <textarea id="description" v-model="description"></textarea>
 
       <button type="submit">Add task</button>
     </form>
@@ -118,3 +121,14 @@
     },
   };
 </script>
+
+<style>
+  .radio-custom:checked::after {
+    color: #fff;
+    font-weight: bold;
+    content: "✓";
+    position: relative;
+    top: 2px;
+    left: 7px;
+  }
+</style>
