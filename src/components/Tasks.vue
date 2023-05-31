@@ -52,12 +52,20 @@
 
       <button type="submit">Add task</button>
     </form>
+    <el-button
+      type="primary"
+      circle
+      size="large"
+      class="fixed z-90 w-40 h-40 bottom-10 right-16 hover:bg-blue-700 hover:drop-shadow-2xl"
+    >
+      <el-icon :size="20"><Plus /></el-icon>
+    </el-button>
   </div>
 </template>
 
 <script>
   import useAxios from "../axios";
-  import { Delete } from "@element-plus/icons-vue";
+  import { Delete, Plus } from "@element-plus/icons-vue";
 
   export default {
     data() {
