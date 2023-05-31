@@ -2,6 +2,7 @@
   <div class="container mx-auto">
     <h2 class="text-4xl mb-7">What's up, User!</h2>
     <p class="uppercase">categories</p>
+    <div class="w-full h-40 border-2 bg-black mt-5 mb-7"></div>
     <!-- TODO - Add categories scroller section -->
     <p class="uppercase mb-5">today's tasks</p>
     <ul class="space-y-3">
