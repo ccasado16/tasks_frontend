@@ -56,7 +56,7 @@
       type="primary"
       circle
       size="large"
-      class="fixed z-90 w-40 h-40 bottom-10 right-16 hover:bg-blue-700 hover:drop-shadow-2xl"
+      class="fixed z-90 bottom-10 right-14 hover:bg-blue-700 hover:drop-shadow-2xl"
     >
       <el-icon :size="20"><Plus /></el-icon>
     </el-button>
