@@ -1,16 +1,36 @@
 <template>
-  <div class="">
+  <div class="container mx-auto">
     <h2 class="text-4xl mb-7">What's up, User!</h2>
     <p class="uppercase">categories</p>
     <!-- TODO - Add categories scroller section -->
     <p class="uppercase mb-5">today's tasks</p>
     <ul class="space-y-3">
-      <li v-for="task in tasks" :key="task.id" class="border-2">
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
-        <p>{{ task.completed }}</p>
-        <button @click="completeTask(task)">Complete</button>
-        <button @click="deleteTask(task)">Delete</button>
+      <li
+        v-for="task in tasks"
+        :key="task.id"
+        class="flex p-3 border-2 rounded-3xl items-center justify-between"
+      >
+        <!-- left -->
+        <div class="flex items-center">
+          <input
+            type="radio"
+            class="radio-custom w-7 h-7 mr-5"
+            :checked="task.completed"
+            @click="completeTask(task)"
+          />
+          <div :class="{ 'line-through': task.completed }">
+            <h3 class="text-2xl font-semibold">
+              {{ task.title }}
+            </h3>
+            <p class="text-xl">{{ task.description }}</p>
+            <p>{{ task.completed }}</p>
+          </div>
+        </div>
+
+        <!-- right -->
+        <el-button @click="deleteTask(task)">
+          <el-icon><Delete /></el-icon>
+        </el-button>
       </li>
     </ul>
 
@@ -36,6 +56,8 @@
 
 <script>
   import useAxios from "../axios";
+  import { Delete } from "@element-plus/icons-vue";
+
   export default {
     data() {
       return {
@@ -103,3 +125,14 @@
     },
   };
 </script>
+
+<style>
+  .radio-custom:checked::after {
+    color: #fff;
+    font-weight: bold;
+    content: "✓";
+    position: relative;
+    top: 2px;
+    left: 7px;
+  }
+</style>
