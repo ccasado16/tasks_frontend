@@ -36,22 +36,6 @@
     </ul>
 
     <hr />
-    <!-- Add a new task form -->
-    <form v-on:submit.prevent="addTask">
-      <label for="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        placeholder="Title"
-        v-model="title"
-      />
-
-      <label for="description">Description</label>
-      <textarea id="description" v-model="description"></textarea>
-
-      <button type="submit">Add task</button>
-    </form>
     <el-button
       type="primary"
       circle
@@ -62,10 +46,24 @@
       <el-icon :size="20"><Plus /></el-icon>
     </el-button>
 
-    <el-dialog v-model="dialogVisible" title="Dialog" width="30%">
-      <span>This is a message</span>
-    </el-dialog>
+    <el-dialog v-model="dialogVisible" title="Dialog" fullscreen>
+      <!-- Add a new task form -->
+      <form v-on:submit.prevent="addTask">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Title"
+          v-model="title"
+        />
 
+        <label for="description">Description</label>
+        <textarea id="description" v-model="description"></textarea>
+
+        <button type="submit">Add task</button>
+      </form>
+    </el-dialog>
   </div>
 </template>
 
