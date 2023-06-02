@@ -36,28 +36,61 @@
     </ul>
 
     <hr />
-    <!-- Add a new task form -->
-    <form v-on:submit.prevent="addTask">
-      <label for="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        placeholder="Title"
-        v-model="title"
-      />
+    <el-button
+      type="primary"
+      circle
+      size="large"
+      class="fixed z-90 bottom-10 right-14 hover:bg-blue-700 hover:drop-shadow-2xl hover:duration-500"
+      @click="dialogVisible = true"
+    >
+      <el-icon :size="20"><Plus /></el-icon>
+    </el-button>
 
-      <label for="description">Description</label>
-      <textarea id="description" v-model="description"></textarea>
-
-      <button type="submit">Add task</button>
-    </form>
+    <el-dialog
+      v-model="dialogVisible"
+      fullscreen
+      class="flex flex-col justify-center p-14"
+    >
+      <div class="">
+        <!-- Add a new task form -->
+        <form v-on:submit.prevent="addTask" class="flex flex-col space-y-5">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Create a new task"
+            v-model="title"
+            class="font-bold text-2xl focus:outline-none"
+          />
+          <textarea
+            id="description"
+            v-model="description"
+            placeholder="Describe your task"
+            class="font-semibold text-xl focus:outline-none resize-none"
+            rows="5"
+          ></textarea>
+        </form>
+        <button
+          type="submit"
+          class="bg-blue-600 py-4 px-7 text-white font-bold rounded-full fixed bottom-14 right-14"
+          @click="addTask"
+        >
+          Add task
+        </button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
+<script setup>
+  import { ref } from "vue";
+  import { ElMessage } from 'element-plus'
+  const dialogVisible = ref(false);
+</script>
+
 <script>
   import useAxios from "../axios";
-  import { Delete } from "@element-plus/icons-vue";
+  import { Delete, Plus } from "@element-plus/icons-vue";
 
   export default {
     data() {
@@ -90,6 +123,10 @@
           this.tasks.push(response.data);
           this.title = "";
           this.description = "";
+          ElMessage({
+            message: "Task added successfully",
+            type: "success",
+          });
         } catch (error) {
           console.log(error);
         }
