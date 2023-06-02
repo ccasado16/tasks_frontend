@@ -9,7 +9,7 @@
       <li
         v-for="task in tasks"
         :key="task.id"
-        class="flex p-3 border-2 rounded-3xl items-center justify-between"
+        class="flex p-3 border rounded-3xl items-center justify-between"
       >
         <!-- left -->
         <div class="flex items-center">
@@ -35,15 +35,12 @@
       </li>
     </ul>
 
-    <el-button
-      type="primary"
-      circle
-      size="large"
-      class="fixed z-90 bottom-10 right-14 hover:bg-blue-700 hover:drop-shadow-2xl hover:duration-500"
+    <button
+      class="fixed z-90 bottom-10 right-4 hover:bg-blue-500 hover:duration-500 bg-blue-600 w-14 h-14 rounded-full flex justify-center items-center"
       @click="dialogVisible = true"
     >
-      <el-icon :size="20"><Plus /></el-icon>
-    </el-button>
+      <el-icon :size="25" color="#fff"><Plus /></el-icon>
+    </button>
 
     <el-dialog
       v-model="dialogVisible"
@@ -83,7 +80,7 @@
 
 <script setup>
   import { ref } from "vue";
-  import { ElMessage } from 'element-plus'
+  import { ElMessage } from "element-plus";
   const dialogVisible = ref(false);
 </script>
 
