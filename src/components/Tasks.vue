@@ -56,12 +56,23 @@
       type="primary"
       circle
       size="large"
-      class="fixed z-90 bottom-10 right-14 hover:bg-blue-700 hover:drop-shadow-2xl"
+      class="fixed z-90 bottom-10 right-14 hover:bg-blue-700 hover:drop-shadow-2xl hover:duration-500"
+      @click="dialogVisible = true"
     >
       <el-icon :size="20"><Plus /></el-icon>
     </el-button>
+
+    <el-dialog v-model="dialogVisible" title="Dialog" width="30%">
+      <span>This is a message</span>
+    </el-dialog>
+
   </div>
 </template>
+
+<script setup>
+  import { ref } from "vue";
+  const dialogVisible = ref(false);
+</script>
 
 <script>
   import useAxios from "../axios";
