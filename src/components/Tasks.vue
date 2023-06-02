@@ -35,7 +35,6 @@
       </li>
     </ul>
 
-    <hr />
     <el-button
       type="primary"
       circle

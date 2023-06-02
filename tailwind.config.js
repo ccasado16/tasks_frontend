@@ -3,7 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     container: {
-      padding: ".5rem",
+      padding: "1rem",
     },
     extend: {},
   },
