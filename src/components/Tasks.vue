@@ -68,7 +68,7 @@
         </form>
         <button
           type="submit"
-          class="bg-blue-600 py-4 px-7 text-white font-bold rounded-full fixed bottom-14 right-14"
+          class="bg-blue-600 py-4 px-7 text-white font-bold rounded-full fixed bottom-10 right-4"
           @click="addTask"
         >
           Add task
