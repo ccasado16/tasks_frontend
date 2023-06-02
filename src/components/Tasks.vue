@@ -46,29 +46,45 @@
       <el-icon :size="20"><Plus /></el-icon>
     </el-button>
 
-    <el-dialog v-model="dialogVisible" title="Dialog" fullscreen>
-      <!-- Add a new task form -->
-      <form v-on:submit.prevent="addTask">
-        <label for="title">Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Title"
-          v-model="title"
-        />
-
-        <label for="description">Description</label>
-        <textarea id="description" v-model="description"></textarea>
-
-        <button type="submit">Add task</button>
-      </form>
+    <el-dialog
+      v-model="dialogVisible"
+      fullscreen
+      class="flex flex-col justify-center p-14"
+    >
+      <div class="">
+        <!-- Add a new task form -->
+        <form v-on:submit.prevent="addTask" class="flex flex-col space-y-5">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Create a new task"
+            v-model="title"
+            class="font-bold text-2xl focus:outline-none"
+          />
+          <textarea
+            id="description"
+            v-model="description"
+            placeholder="Describe your task"
+            class="font-semibold text-xl focus:outline-none resize-none"
+            rows="5"
+          ></textarea>
+        </form>
+        <button
+          type="submit"
+          class="bg-blue-600 py-4 px-7 text-white font-bold rounded-full fixed bottom-14 right-14"
+          @click="addTask"
+        >
+          Add task
+        </button>
+      </div>
     </el-dialog>
   </div>
 </template>
 
 <script setup>
   import { ref } from "vue";
+  import { ElMessage } from 'element-plus'
   const dialogVisible = ref(false);
 </script>
 
@@ -107,6 +123,10 @@
           this.tasks.push(response.data);
           this.title = "";
           this.description = "";
+          ElMessage({
+            message: "Task added successfully",
+            type: "success",
+          });
         } catch (error) {
           console.log(error);
         }
